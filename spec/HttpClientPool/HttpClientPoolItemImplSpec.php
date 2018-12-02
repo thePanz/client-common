@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Http\Client\Common;
+namespace spec\Http\Client\Common\HttpClientPool;
 
 use Http\Client\Exception;
 use Http\Client\Exception\TransferException;
@@ -14,7 +14,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Http\Client\Exception\RequestException;
 
-class HttpClientPoolItemSpec extends ObjectBehavior
+class HttpClientPoolItemImplSpec extends ObjectBehavior
 {
     public function let(HttpClient $httpClient)
     {

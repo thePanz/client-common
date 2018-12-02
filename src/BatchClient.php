@@ -6,7 +6,6 @@ use Http\Client\Exception;
 use Http\Client\HttpClient;
 use Http\Client\Common\Exception\BatchException;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * BatchClient allow to sends multiple request and retrieve a Batch Result.
@@ -15,26 +14,8 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @author Joel Wurtz <jwurtz@jolicode.com>
  */
-class BatchClient implements HttpClient
+interface BatchClient extends HttpClient
 {
-    /**
-     * @var HttpClient
-     */
-    private $client;
-
-    public function __construct(HttpClient $client)
-    {
-        $this->client = $client;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function sendRequest(RequestInterface $request): ResponseInterface
-    {
-        return $this->client->sendRequest($request);
-    }
-
     /**
      * Send several requests.
      *
@@ -49,23 +30,5 @@ class BatchClient implements HttpClient
      *                        BatchResult with a map of request to result for success, request to
      *                        exception for failures
      */
-    public function sendRequests(array $requests): BatchResult
-    {
-        $batchResult = new BatchResult();
-
-        foreach ($requests as $request) {
-            try {
-                $response = $this->sendRequest($request);
-                $batchResult = $batchResult->addResponse($request, $response);
-            } catch (Exception $e) {
-                $batchResult = $batchResult->addException($request, $e);
-            }
-        }
-
-        if ($batchResult->hasExceptions()) {
-            throw new BatchException($batchResult);
-        }
-
-        return $batchResult;
-    }
+    public function sendRequests(array $requests): BatchResult;
 }

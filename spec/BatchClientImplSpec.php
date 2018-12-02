@@ -6,16 +6,16 @@ use Http\Client\HttpClient;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
-use Http\Client\Common\BatchClient;
+use Http\Client\Common\BatchClientImpl;
 use Http\Client\Common\BatchResult;
 use Http\Client\Exception\HttpException;
 use Http\Client\Common\Exception\BatchException;
 
-class BatchClientSpec extends ObjectBehavior
+class BatchClientImplSpec extends ObjectBehavior
 {
     public function let(HttpClient $client)
     {
-        $this->beAnInstanceOf(BatchClient::class, [$client]);
+        $this->beAnInstanceOf(BatchClientImpl::class, [$client]);
     }
 
     public function it_send_multiple_request_using_send_request(HttpClient $client, RequestInterface $request1, RequestInterface $request2, ResponseInterface $response1, ResponseInterface $response2)

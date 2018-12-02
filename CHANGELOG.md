@@ -5,6 +5,9 @@
 ### Changed
 - Abstract method `HttpClientPool::chooseHttpClient()` has now an explicit return type (`Http\Client\Common\HttpClientPoolItem`)
 - Interface method `Plugin::handleRequest(...)` has now an explicit return type (`Http\Promise\Promise`)
+- Made all classes final as they are not intended to be extended. 
+  Added interfaces for BatchClient, HttpClientPool, HttpClientRouter and HttpMethodsClient.
+  Those classes have been renamed with an `Impl` suffix.
 
 ### Removed
 - Deprecated option `debug_plugins` has been removed from `PluginClient`
