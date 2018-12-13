@@ -28,7 +28,7 @@ abstract class HttpClientPool implements HttpClientPoolInterface
     public function addHttpClient($client)
     {
         if (!$client instanceof HttpClientPoolItem) {
-            $client = new HttpClientPoolItemImpl($client);
+            $client = new HttpClientPoolItem($client);
         }
 
         $this->clientPool[] = $client;

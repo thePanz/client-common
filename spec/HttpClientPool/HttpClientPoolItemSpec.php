@@ -14,7 +14,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Http\Client\Exception\RequestException;
 
-class HttpClientPoolItemImplSpec extends ObjectBehavior
+class HttpClientPoolItemSpec extends ObjectBehavior
 {
     public function let(HttpClient $httpClient)
     {

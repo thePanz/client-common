@@ -2,7 +2,7 @@
 
 namespace spec\Http\Client\Common\HttpClientPool;
 
-use Http\Client\Common\HttpClientPool\HttpClientPoolItemImpl;
+use Http\Client\Common\HttpClientPool\HttpClientPoolItem;
 use Http\Client\HttpAsyncClient;
 use Http\Client\HttpClient;
 use Http\Promise\Promise;
@@ -65,7 +65,7 @@ class RoundRobinClientPoolSpec extends ObjectBehavior
 
     public function it_reenable_client(HttpClient $client, RequestInterface $request)
     {
-        $this->addHttpClient(new HttpClientPoolItemImpl($client->getWrappedObject(), 0));
+        $this->addHttpClient(new HttpClientPoolItem($client->getWrappedObject(), 0));
         $client->sendRequest($request)->willThrow(HttpException::class);
 
         $this->shouldThrow(HttpException::class)->duringSendRequest($request);
